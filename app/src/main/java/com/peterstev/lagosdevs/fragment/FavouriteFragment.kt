@@ -95,6 +95,7 @@ class FavouriteFragment : Fragment(), FavouriteAdapter.OnItemClickListener {
         with(binding.errorView) {
             message.text = errorMessage
             btRetry.setOnClickListener { viewModel.getFavourites() }
+            btFavourites.setOnClickListener { Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show() }
         }
     }
 

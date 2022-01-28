@@ -100,6 +100,7 @@ class MainFragment : Fragment(), UserAdapter.OnItemClickListener {
         with(binding.errorView) {
             message.text = errorMessage
             btRetry.setOnClickListener { viewModel.fetchUsers() }
+            btFavourites.setOnClickListener { viewModel.toFavourites() }
         }
     }
 
