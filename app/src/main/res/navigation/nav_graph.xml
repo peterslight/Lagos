@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/link_salary_nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.peterstev.lagosdevs.fragment.MainFragment"
+        android:label="Lagos Devs"
+        tools:layout="@layout/fragment_list_main">
+
+        <action
+            android:id="@+id/toFavorites"
+            app:destination="@id/favouriteFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+
+        <action
+            android:id="@+id/toDetails"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out">
+
+            <argument
+                android:name="user"
+                app:argType="com.peterstev.domain.model.User" />
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.peterstev.lagosdevs.fragment.DetailFragment"
+        android:label="Detail"
+        tools:layout="@layout/fragment_detail"/>
+
+    <fragment
+        android:id="@+id/favouriteFragment"
+        android:name="com.peterstev.lagosdevs.fragment.FavouriteFragment"
+        android:label="Favourites"
+        tools:layout="@layout/fragment_list_favourite">
+
+        <action
+            android:id="@+id/toDetails"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" >
+
+            <argument
+                android:name="user"
+                app:argType="com.peterstev.domain.model.User" />
+        </action>
+
+    </fragment>
+</navigation>
