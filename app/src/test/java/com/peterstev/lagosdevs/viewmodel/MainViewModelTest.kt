@@ -1,20 +1,15 @@
 package com.peterstev.lagosdevs.viewmodel
 
 import com.peterstev.domain.model.GithubUsers
-import com.peterstev.domain.model.User
 import com.peterstev.domain.usecase.UserUseCase
 import com.peterstev.lagosdevs.LiveDataSpek
-import com.peterstev.lagosdevs.fragment.MainFragmentDirections
 import com.peterstev.lagosdevs.routing.Router
 import com.peterstev.lagosdevs.util.RxSchedulers
 import io.mockk.every
-import io.mockk.justRun
 import io.mockk.mockk
-import io.mockk.verify
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.assertj.core.api.Assertions.anyOf
 import org.assertj.core.api.Assertions.assertThat
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
@@ -26,11 +21,7 @@ class MainViewModelTest : Spek({
     describe("MainViewModel") {
 
         val userUseCase: UserUseCase by memoized { mockk() }
-        val router: Router by memoized { mockk {
-            justRun {
-                navigate(MainFragmentDirections.toDetails(any()))
-            }
-        } }
+        val router: Router by memoized { mockk() }
         val schedulers: RxSchedulers by memoized {
             mockk {
                 every { IO } returns Schedulers.trampoline()
@@ -188,18 +179,6 @@ class MainViewModelTest : Spek({
 
             it("should return a value of 2") {
                 assertThat(viewModel.getPage()).isEqualTo(2)
-            }
-        }
-
-        describe("toDetails") {
-            lateinit var user :User
-            beforeEachTest {
-                user = mockk()
-                viewModel.toDetails(user)
-            }
-
-            it("should route to the details page") {
-                verify { router.navigate(MainFragmentDirections.toDetails(user)) }
             }
         }
     }

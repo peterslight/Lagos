@@ -15,8 +15,7 @@ class FavoriteRepositoryImpl @Inject constructor(
 ) : FavouriteRepository {
 
     override fun addFavourite(user: User): Single<Long> {
-        val favourite = updateFavourite(user)
-        return userDao.addFavourite(entityMapper.transform(favourite))
+        return userDao.addFavourite(entityMapper.transform(user))
     }
 
     override fun getFavourites(): Flowable<List<User>> {
@@ -35,10 +34,5 @@ class FavoriteRepositoryImpl @Inject constructor(
 
     override fun deleteAllFavourites(): Completable {
         return userDao.deleteAllFavourites()
-    }
-
-    private fun updateFavourite(user: User): User {
-        user.isFavourite = true
-        return user
     }
 }

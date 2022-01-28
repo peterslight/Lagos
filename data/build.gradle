@@ -18,7 +18,6 @@ dependencies {
     implementation rx
 
     testImplementation unitTesting
-    testImplementation okHttpMockServer
 }
 
 test {

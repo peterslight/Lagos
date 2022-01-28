@@ -6,14 +6,11 @@ import androidx.lifecycle.ViewModel
 import com.peterstev.domain.model.User
 import com.peterstev.domain.usecase.FavouritesUseCase
 import com.peterstev.lagosdevs.fragment.FavouriteFragmentDirections
-import com.peterstev.lagosdevs.fragment.MainFragmentDirections
 import com.peterstev.lagosdevs.routing.Router
 import com.peterstev.lagosdevs.util.RxSchedulers
-import com.peterstev.lagosdevs.util.printLog
 import com.peterstev.lagosdevs.util.thread
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import javax.inject.Inject
-import kotlin.concurrent.thread
 
 class FavouriteViewModel @Inject constructor(
     private val favouritesUseCase: FavouritesUseCase,
@@ -32,18 +29,6 @@ class FavouriteViewModel @Inject constructor(
         class Error(val throwable: Throwable) : FavouriteState()
     }
 
-    fun getSingleFavourite(username: String) {
-        val subscribe = favouritesUseCase
-            .getSingleFavourite(username)
-            .thread(schedulers)
-            .map { FavouriteState.Success(it) }
-            .subscribe(this::updateFavouriteState) {
-                updateFavouriteState(FavouriteState.Error(it))
-            }
-        disposable.add(subscribe)
-    }
-
-    //doesnt not work yet, test in fav page
     fun deleteFavourite(user: User) {
         val subscribe = favouritesUseCase
             .deleteFavourite(user)

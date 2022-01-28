@@ -14,8 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Module
 class ApiModule {
 
-    private val token = "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"
-//    private val token = System.getenv("token")
+    private val token = System.getenv("token")
 
     @Provides
     fun providesRetrofit(client: OkHttpClient): Retrofit {

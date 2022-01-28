@@ -19,9 +19,7 @@
 
         <action
             android:id="@+id/toDetails"
-            app:destination="@id/detailFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out">
+            app:destination="@id/detailFragment">
 
             <argument
                 android:name="user"
@@ -34,7 +32,7 @@
         android:id="@+id/detailFragment"
         android:name="com.peterstev.lagosdevs.fragment.DetailFragment"
         android:label="Detail"
-        tools:layout="@layout/fragment_detail"/>
+        tools:layout="@layout/fragment_detail" />
 
     <fragment
         android:id="@+id/favouriteFragment"
@@ -46,7 +44,7 @@
             android:id="@+id/toDetails"
             app:destination="@id/detailFragment"
             app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out" >
+            app:exitAnim="@android:anim/fade_out">
 
             <argument
                 android:name="user"
